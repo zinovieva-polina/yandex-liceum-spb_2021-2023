@@ -32,10 +32,14 @@
 
 import pygame
 
+
+
+razmer = int(input())
+kolvo = int(input())
 def draw(screen):
     screen.fill((0, 0, 0))
-    pygame.draw.line(screen, (255, 255, 255), (0, 0), (800, 600), width=5)
-    pygame.draw.line(screen, (255, 255, 255), (800, 0), (0, 600), width=5)
+    pygame.draw.rect(screen, (255, 255, 255), [(0, 0), (razmer, razmer)])
+
 
 
 if __name__ == '__main__':
