@@ -79,15 +79,15 @@ if __name__ == '__main__':
                 running = False
         screen.fill((230, 215, 7))
         pygame.draw.circle(screen, (247, 0, 132), (x_posr, 200), 20)
-        x_posr += v / fps + 2
+        x_posr += v / fps + 1
         pygame.draw.circle(screen, (0, 255, 0), (x_posx, 175), 5)
-        x_posx += v / fps + 2
+        x_posx += v / fps + 1
         pygame.draw.circle(screen, (0, 0, 0), (x_posl, 194), 5)
-        x_posl += v / fps + 2
+        x_posl += v / fps + 1
         pygame.draw.circle(screen, (0, 0, 0), (x_posre, 194), 5)
-        x_posre += v / fps + 2
+        x_posre += v / fps + 1
         pygame.draw.circle(screen, (255, 255, 255), (x_posrot, 210), 5)
-        x_posrot += v / fps + 2
+        x_posrot += v / fps + 1
         pygame.draw.rect(screen, (107, 106, 95), ((x_pram, 90), (80, 130)))
         x_pram += v / fps
         pygame.draw.circle(screen, (0, 0, 0), (x_pramr, 120), 10)
