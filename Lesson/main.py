@@ -1,20 +1,26 @@
 import pygame
 
 if __name__ == '__main__':
-    # инициализация Pygame:
     pygame.init()
-    # размеры окна:
-    size = width, height = 800, 600
-    # screen — холст, на котором нужно рисовать:
+    size = width, height = 800, 400
     screen = pygame.display.set_mode(size)
-    # формирование кадра:
-    # команды рисования на холсте
-    # ...
-    # ...
-    # смена (отрисовка) кадра:
-    # pygame.display.flip()
-    # ожидание закрытия окна:
-    while pygame.event.wait().type != pygame.QUIT:
-        pass
-    # завершение работы:
+    x_pos = -10
+    v = 60
+    clock = pygame.time.Clock()
+    running = True
+    while running:
+        # внутри игрового цикла ещё один цикл
+        # приема и обработки сообщений
+        for event in pygame.event.get():
+            # при закрытии окна
+            if event.type == pygame.QUIT:
+                running = False
+        screen.fill((0, 0, 0))
+        pygame.draw.circle(screen, (255, 0, 0), (x_pos, 200), 20)
+        x_pos += v * clock.tick() / 1000  # v * t в секундах
+        # отрисовка и изменение свойств объектов
+        # ...
+
+        # обновление экрана
+        pygame.display.flip()
     pygame.quit()
