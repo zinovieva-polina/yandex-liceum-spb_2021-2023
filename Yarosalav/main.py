@@ -50,3 +50,6 @@ if __name__ == '__main__':
         draw(screen)
         pygame.display.flip()
     pygame.quit()
+lrgjflkd
+fgdfg grt
+get fkbf:
