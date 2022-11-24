@@ -60,8 +60,14 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode(size)
     x_posr = -10
     x_posx = -10
-    x_post = 200
+    x_posl = -15
+    x_posre = -3
+    x_posrot = -9
+    x_pram = -150
+    x_praml = -120
+    x_pramr = -80
     v = 60
+    fps = 60
     clock = pygame.time.Clock()
     running = True
     while running:
@@ -71,16 +77,31 @@ if __name__ == '__main__':
             # при закрытии окна
             if event.type == pygame.QUIT:
                 running = False
-        screen.fill((255, 255, 255))
+        screen.fill((230, 215, 7))
         pygame.draw.circle(screen, (247, 0, 132), (x_posr, 200), 20)
-        x_posr += v * clock.tick() / 1000
-        pygame.draw.circle(screen, (0, 255, 0), (x_posx, 200), 20)
-        x_posx += v * clock.tick() / 1000
+        x_posr += v / fps + 2
+        pygame.draw.circle(screen, (0, 255, 0), (x_posx, 175), 5)
+        x_posx += v / fps + 2
+        pygame.draw.circle(screen, (0, 0, 0), (x_posl, 194), 5)
+        x_posl += v / fps + 2
+        pygame.draw.circle(screen, (0, 0, 0), (x_posre, 194), 5)
+        x_posre += v / fps + 2
+        pygame.draw.circle(screen, (255, 255, 255), (x_posrot, 210), 5)
+        x_posrot += v / fps + 2
+        pygame.draw.rect(screen, (107, 106, 95), ((x_pram, 90), (80, 130)))
+        x_pram += v / fps
+        pygame.draw.circle(screen, (0, 0, 0), (x_pramr, 120), 10)
+        x_pramr += v / fps
+        pygame.draw.circle(screen, (0, 0, 0), (x_praml, 120), 10)
+        x_praml += v / fps
+
+
         # v * t в секундах
         # отрисовка и изменение свойств объектов
         # ...
 
         # обновление экрана
         pygame.display.flip()
+        clock.tick(fps)
     pygame.quit()
 
