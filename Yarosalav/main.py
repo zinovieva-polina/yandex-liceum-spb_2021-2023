@@ -52,56 +52,131 @@
 #     pygame.quit()
 
 
+#         screen.fill((230, 215, 7))
+#         pygame.draw.circle(screen, (247, 0, 132), (x_posr, 200), 20)
+#         x_posr += v / fps + 1
+#         pygame.draw.circle(screen, (0, 255, 0), (x_posx, 175), 5)
+#         x_posx += v / fps + 1
+#         pygame.draw.circle(screen, (0, 0, 0), (x_posl, 194), 5)
+#         x_posl += v / fps + 1
+#         pygame.draw.circle(screen, (0, 0, 0), (x_posre, 194), 5)
+#         x_posre += v / fps + 1
+#         pygame.draw.circle(screen, (255, 255, 255), (x_posrot, 210), 5)
+#         x_posrot += v / fps + 1
+#         pygame.draw.rect(screen, (107, 106, 95), ((x_pram, 90), (80, 130)))
+#         x_pram += v / fps
+#         pygame.draw.circle(screen, (0, 0, 0), (x_pramr, 120), 10)
+#         x_pramr += v / fps
+#         pygame.draw.circle(screen, (0, 0, 0), (x_praml, 120), 10)
+#         x_praml += v / fps
+
+# # 2 версия проекта
+#
 import pygame
 
 if __name__ == '__main__':
     pygame.init()
     size = width, height = 800, 400
     screen = pygame.display.set_mode(size)
-    x_posr = -10
-    x_posx = -10
-    x_posl = -15
-    x_posre = -3
-    x_posrot = -9
-    x_pram = -150
-    x_praml = -120
-    x_pramr = -80
-    v = 60
-    fps = 60
-    clock = pygame.time.Clock()
+    background_image = pygame.image.load("Foto/kitchen.jpg")
+
     running = True
+    '''РЕДИСКА'''
+    x_pos = 30  # тело
+    y_pos = 280  # тело
+    x_posl = 41  # правый глаз
+    y_posl = 280  # правый глаз
+    x_posrz = 41  # правый глаз зрачок
+    y_posrz = 280  # правый глаз зрачок
+
+    x_poslz = 21  # левый глаз зрачок
+    y_poslz = 280  # левый глаз зрачок
+    x_posr = 21  # левый глаз
+    y_posr = 280  # левый глаз
+    x_hvost = 30
+    y_hvost = 247
+
+    '''ТЁРКА'''
+    # x_pos1 = -60  # тёрка
+    # y_pos2 = 180  # тёрка
+    # x_posrt = 21  # левый глаз
+    x_prami = -90
+    x_pramr = -60
+    x_praml = -57
+    x_pramrr = -20
+    x_pramll = -17
+
+
+
+
+    v = 480  # пикселей в секунду
+    fps2 = 45  # скорость тёрки
+    fps = 30
+    clock = pygame.time.Clock()
     while running:
-        # внутри игрового цикла ещё один цикл
-        # приема и обработки сообщений
+        screen.blit(background_image, (0, 0))
         for event in pygame.event.get():
-            # при закрытии окна
             if event.type == pygame.QUIT:
                 running = False
-        screen.fill((230, 215, 7))
-        pygame.draw.circle(screen, (247, 0, 132), (x_posr, 200), 20)
-        x_posr += v / fps + 1
-        pygame.draw.circle(screen, (0, 255, 0), (x_posx, 175), 5)
-        x_posx += v / fps + 1
-        pygame.draw.circle(screen, (0, 0, 0), (x_posl, 194), 5)
-        x_posl += v / fps + 1
-        pygame.draw.circle(screen, (0, 0, 0), (x_posre, 194), 5)
-        x_posre += v / fps + 1
-        pygame.draw.circle(screen, (255, 255, 255), (x_posrot, 210), 5)
-        x_posrot += v / fps + 1
-        pygame.draw.rect(screen, (107, 106, 95), ((x_pram, 90), (80, 130)))
-        x_pram += v / fps
-        pygame.draw.circle(screen, (0, 0, 0), (x_pramr, 120), 10)
-        x_pramr += v / fps
-        pygame.draw.circle(screen, (0, 0, 0), (x_praml, 120), 10)
-        x_praml += v / fps
 
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT:
+                    x_pos -= v / fps
+                    x_posl -= v / fps
+                    x_posr -= v / fps
+                    x_posrz -= v / fps
+                    x_poslz -= v / fps
+                    x_hvost -= v / fps
 
-        # v * t в секундах
-        # отрисовка и изменение свойств объектов
-        # ...
+                if event.key == pygame.K_RIGHT:
+                    x_pos += v / fps
+                    x_posl += v / fps
+                    x_posr += v / fps
+                    x_posrz += v / fps
+                    x_poslz += v / fps
+                    x_hvost += v / fps
 
-        # обновление экрана
-        pygame.display.flip()
+            # if event.type == pygame.KEYDOWN:
+            #     if event.key == pygame.K_UP:
+            #         y_pos -= v / fps
+            #         y_posl -= v / fps
+            #         y_posr -= v / fps
+            #         y_posrz -= v / fps
+            #         y_poslz -= v / fps
+            #         y_hvost -= v / fps
+            #
+            #     if event.key == pygame.K_DOWN:
+            #         y_pos += v / fps
+            #         y_posl += v / fps
+            #         y_posr += v / fps
+            #         y_posrz += v / fps
+            #         y_poslz += v / fps
+            #         y_hvost -= v / fps
+
+        pygame.draw.circle(screen, (235, 28, 133), (int(x_pos), int(y_pos)), 30)  # тело
+        pygame.draw.circle(screen, (255, 255, 255), (int(x_posl), int(y_posl)), 8)  # левый глаз
+        pygame.draw.circle(screen, (255, 255, 255), (int(x_posr), int(y_posr)), 8)  # правый глаз
+        pygame.draw.circle(screen, (0, 0, 0), (int(x_posrz), int(y_posrz)), 5)  # правый глаз зрачок
+        pygame.draw.circle(screen, (0, 0, 0), (int(x_poslz), int(y_poslz)), 5) # левый глаз зрачок
+        pygame.draw.circle(screen, (0, 255, 31), (int(x_hvost), int(y_hvost)), 5) #хвостик
+        pygame.draw.rect(screen, (107, 106, 95), ((x_prami, 180), (80, 130))) # терка
+        x_prami += v / fps2 - 10
+        pygame.draw.circle(screen, (159, 0, 30), (x_pramr, 210), 10)
+        x_pramr += v / fps2 - 10
+        pygame.draw.circle(screen, (0, 0, 0), (x_praml, 210), 5)
+        x_praml += v / fps2 - 10
+        pygame.draw.circle(screen, (255, 0, 0), (x_pramrr, 210), 10)
+        x_pramrr += v / fps2 - 10
+        pygame.draw.circle(screen, (0, 0, 0), (x_pramll, 210), 5)
+        x_pramll += v / fps2 - 10
+        # pygame.draw.rect(screen, (160, 163, 166), (int(x_pos1), int(y_pos2), 70, 150))  # тёрка
+        # pygame.draw.circle(screen, (0, 0, 0), (int(x_posrr), int(x_posrl)), 5)  # правый глаз зрачок
+        # pygame.draw.circle(screen, (0, 0, 0), (int(x_posrt), int(x_posrt)), 5)  # левый глаз зрачок
+        # pygame.draw.circle(screen, (255, 255, 255), (int(x_posl), int(y_posl)), 8)  # левый глаз
+        # pygame.draw.circle(screen, (255, 255, 255), (int(x_posr), int(y_posr)), 8)  # правый глаз
+        # x_pos1 += vt * clock.tick() / 1000 # v * t в секундах
+        # y_pos2 += vt * clock.tick() / 1000
+
         clock.tick(fps)
+        pygame.display.flip()
     pygame.quit()
-
