@@ -1,33 +1,23 @@
 import pygame
+from board import Board
+
+
+def game(screen, board):
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        screen.fill((0, 0, 0))
+        board.render(screen)
+        pygame.display.flip()
+
 
 if __name__ == '__main__':
     pygame.init()
     size = width, height = 800, 400
     screen = pygame.display.set_mode(size)
-    x_pos = 0
-    v = 60  # пикселей в секунду
-    fps = 50  # количество кадров в секунду
-    clock = pygame.time.Clock()
-    running = True
-    while running:  # главный игровой цикл
-        screen.fill((0, 0, 0))
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_SPACE:
-                      x_pos += v / fps  # v * t в секундах
-
-        pygame.draw.circle(screen, (255, 0, 0), (int(x_pos), 200), 20)
-
-        # обработка остальных событий
-        # ...
-        # формирование кадра
-        # ...
-
-        pygame.display.flip()  # смена кадра
-        # изменение игрового мира
-        # ...
-        # временная задержка
-        clock.tick(fps)
-    pygame.quit()
+    # поле 5 на 7
+    board = Board(4, 3)
+    board.set_view(100, 100, 50)
+    game(screen, board)
