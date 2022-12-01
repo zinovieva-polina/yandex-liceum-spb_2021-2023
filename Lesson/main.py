@@ -8,6 +8,8 @@ def game(screen, board):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                board.get_click(event.pos)
         screen.fill((0, 0, 0))
         board.render(screen)
         pygame.display.flip()
@@ -15,9 +17,10 @@ def game(screen, board):
 
 if __name__ == '__main__':
     pygame.init()
-    size = width, height = 800, 400
+    size = 470, 470
     screen = pygame.display.set_mode(size)
-    # поле 5 на 7
-    board = Board(4, 3)
-    board.set_view(100, 100, 50)
+    clock = pygame.time.Clock()
+    pygame.display.set_caption('Игра «Жизнь»')
+
+    board = Board(30, 30, 10, 10, 15)
     game(screen, board)
