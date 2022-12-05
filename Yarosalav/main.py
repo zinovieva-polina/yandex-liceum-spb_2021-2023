@@ -3,22 +3,22 @@ import pygame_menu
 
 def create_theme_menu():
     myimage = pygame_menu.baseimage.BaseImage(
-        image_path="путь",
+        image_path="Foto/kitchen.jpg",
         drawing_mode=pygame_menu.baseimage.IMAGE_MODE_REPEAT_XY,
         drawing_offset=(0, 0)
     )
-    mytheme = pygame_menu.Theme.Theme(background_color=myimage,
-                                      title_background_color=(4, 47, 126),
+    mytheme = pygame_menu.Theme(background_color=myimage,
+                                      title_background_color=(193, 0, 113),
                                       title_font_shadow=True,
-                                      widget_padding=25)
+                                      widget_padding=30)
     return mytheme
 
 
 def start_menu(screen, size_screen, theme_menu=None):
     menu = pygame_menu.Menu(
         height=size_screen[1],
-        theme=pygame_menu.themes.THEME_BLUE,
-        title='Welcome',
+        theme=theme_menu,
+        title='Добро пожаловать',
         width=size_screen[0]
     )
     menu.add.button("Начать игру", lambda: start_game(screen))
@@ -29,7 +29,7 @@ def start_menu(screen, size_screen, theme_menu=None):
 def start_game(screen):
     running = True
     while running:
-        screen.fill((0, 0, 0))
+        screen.fill((255, 255, 255))
         for event in pygame.event.get():
             if event.type ** pygame.QUIT:
                 running = False
@@ -40,9 +40,9 @@ def start_game(screen):
 
 if __name__ == '__main__':
     pygame.init()
-    size = width, height = 800, 400
+    size = width, height = 900, 550
     screen = pygame.display.set_mode(size)
-    start_menu((screen, size))
+    start_menu(screen, size, create_theme_menu())
 
 
 
