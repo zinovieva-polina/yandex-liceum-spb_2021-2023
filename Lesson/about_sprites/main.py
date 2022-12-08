@@ -1,6 +1,7 @@
 import os
 import sys
 import pygame
+import random
 
 
 def load_image(name, colorkey=None):
@@ -21,6 +22,21 @@ def load_image(name, colorkey=None):
 
 
 def game(screen):
+    # создадим группу, содержащую все спрайты
+    all_sprites = pygame.sprite.Group()
+    # изображение должно лежать в папке data
+    bomb_image = load_image("bomb.png")
+
+    for i in range(50):
+        # можно сразу создавать спрайты с указанием группы
+        bomb = pygame.sprite.Sprite(all_sprites)
+        bomb.image = bomb_image
+        bomb.rect = bomb.image.get_rect()
+
+        # задаём случайное местоположение бомбочке
+        bomb.rect.x = random.randrange(width)
+        bomb.rect.y = random.randrange(height)
+
     FPS = 60
     tick = 0
     image = load_image("creature.png", -1)
