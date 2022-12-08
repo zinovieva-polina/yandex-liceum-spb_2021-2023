@@ -1,7 +1,6 @@
 import os
 import sys
 import pygame
-import random
 from bomb import Bomb
 from charcter import Character
 
