@@ -1,5 +1,5 @@
 import pygame
-from sasha.board.board import Board
+from sasha.gamelife.board.board import Board
 import copy
 
 
@@ -45,3 +45,7 @@ class BoardGameLife(Board):
                 elif sum_neighbours < 2 or sum_neighbours > 3:
                     board[row][col] = 0
         self.board = copy.deepcopy(board)
+
+
+
+
