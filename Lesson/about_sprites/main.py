@@ -2,6 +2,7 @@ import os
 import sys
 import pygame
 import random
+from bomb import Bomb
 
 
 def load_image(name, colorkey=None):
@@ -24,19 +25,11 @@ def load_image(name, colorkey=None):
 def game(screen):
     # создадим группу, содержащую все спрайты
     all_sprites = pygame.sprite.Group()
-    # изображение должно лежать в папке data
-    bomb_image = load_image("bomb.png")
-
-    for i in range(50):
-        # можно сразу создавать спрайты с указанием группы
-        bomb = pygame.sprite.Sprite(all_sprites)
-        bomb.image = bomb_image
-        bomb.rect = bomb.image.get_rect()
-
-        # задаём случайное местоположение бомбочке
-        bomb.rect.x = random.randrange(width)
-        bomb.rect.y = random.randrange(height)
-
+    bombs_group = pygame.sprite.Group()
+    bomb_img = load_image("bomb.png")
+    boom_img = load_image("boom.png")
+    for _ in range(50):
+        Bomb(bomb_img, boom_img, width, height, bombs_group, all_sprites)
     FPS = 60
     tick = 0
     image = load_image("creature.png", -1)
@@ -46,8 +39,11 @@ def game(screen):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            all_sprites.update(event)
         screen.fill((0, 0, 0))
         screen.blit(image, (10, 10))
+        all_sprites.draw(screen)
+
         tick += 1
         clock.tick(FPS)
         pygame.display.flip()
