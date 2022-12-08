@@ -3,6 +3,7 @@ import sys
 import pygame
 import random
 from bomb import Bomb
+from charcter import Character
 
 
 def load_image(name, colorkey=None):
@@ -26,13 +27,15 @@ def game(screen):
     # создадим группу, содержащую все спрайты
     all_sprites = pygame.sprite.Group()
     bombs_group = pygame.sprite.Group()
+    player_group = pygame.sprite.Group()
     bomb_img = load_image("bomb.png")
     boom_img = load_image("boom.png")
     for _ in range(50):
         Bomb(bomb_img, boom_img, width, height, bombs_group, all_sprites)
+    image = load_image("creature.png", -1)
+    Character(image, (10, 10), 10, player_group, all_sprites)
     FPS = 60
     tick = 0
-    image = load_image("creature.png", -1)
     clock = pygame.time.Clock()
     running = True
     while running:
@@ -41,9 +44,7 @@ def game(screen):
                 running = False
             all_sprites.update(event)
         screen.fill((0, 0, 0))
-        screen.blit(image, (10, 10))
         all_sprites.draw(screen)
-
         tick += 1
         clock.tick(FPS)
         pygame.display.flip()
