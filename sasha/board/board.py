@@ -43,3 +43,5 @@ class Board:
                 coord_x += self.cell_size
             coord_y += self.cell_size
             coord_x = self.left
+
+
