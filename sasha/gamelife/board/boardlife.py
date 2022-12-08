@@ -1,5 +1,5 @@
 import pygame
-from sasha.board.board import Board
+from sasha.gamelife.board.board import Board
 import copy
 
 
