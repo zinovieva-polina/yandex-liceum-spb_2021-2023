@@ -46,6 +46,8 @@ def game(screen, background_game_img):
         screen.fill((0, 0, 0))
         screen.blit(background_game_img, (0, 0))
         all_sprites.draw(screen)
+        if hero:
+            hero.fall()
         tick += 1
         clock.tick(FPS)
         pygame.display.flip()

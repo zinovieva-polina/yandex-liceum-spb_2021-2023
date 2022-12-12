@@ -21,8 +21,6 @@ class Character(pygame.sprite.Sprite):
         if pygame.sprite.spritecollideany(self, self.platform_group) is None:
             self.rect.y += self.speed
 
-
     def update(self, *args):
-        self.fall()
         if args:
             self.walk(args[0])
