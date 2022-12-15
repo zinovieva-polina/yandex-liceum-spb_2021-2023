@@ -17,7 +17,14 @@ def game(screen, background_game_img):
             player_group.update(event)
         screen.fill((0, 0, 0))
         screen.blit(background_game_img, (0, 0))
-        all_sprites.draw(screen)
+        # изменяем ракурс камеры
+        camera.update(player, width, height)
+        # обновляем положение всех спрайтов
+        for sprite in all_sprites:
+            camera.apply(sprite)
+
+        tiles_group.draw(screen)
+        player_group.draw(screen)
         tick += 1
         clock.tick(FPS)
         pygame.display.flip()
@@ -38,4 +45,5 @@ if __name__ == '__main__':
     player_group = pygame.sprite.Group()
     lvl = Level('data/lvl.txt')
     player, level_x, level_y = lvl.generate_level(tile_module, character_module, player_group, tiles_group, walls_group, empty_tile_group, all_sprites)
+    camera = Camera()
     game(screen, background_game_img)
