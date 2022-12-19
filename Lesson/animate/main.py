@@ -25,7 +25,7 @@ def game(screen):
     # создадим группу, содержащую все спрайты
     all_sprites = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
-    Character(load_image("dino.png"), 24, 1, 10, 10, player_group, all_sprites)
+    Character(load_image("dragon_sheet8x2.png"), 8, 2, 10, 10, player_group, all_sprites)
     FPS = 10
     tick = 0
     clock = pygame.time.Clock()
@@ -34,10 +34,10 @@ def game(screen):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            player_group.update(event)
+
         screen.fill((0, 0, 0))
         all_sprites.draw(screen)
-
+        player_group.update()
         tick += 1
         clock.tick(FPS)
         pygame.display.flip()
